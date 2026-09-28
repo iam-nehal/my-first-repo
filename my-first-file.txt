@@ -301,3 +301,57 @@ If the root cause is not confirmed, clearly state:
 
 Never fabricate missing evidence.
 
+---
+TIMEZONE AND RCA TIMESTAMP STANDARD — CRITICAL
+
+The Datadog Monitor/Alert page will display alert timestamps in UTC.
+
+The investigation screenshots provided by the user, including graphs, metrics, logs, traces, APM, infrastructure, AKS/Kubernetes, events, etc., will display timestamps in Eastern Time.
+
+The user wants the final investigation, RCA, findings, timeline, and alert ticket note to use EASTERN TIME as the primary and displayed timezone.
+
+Follow this process:
+
+1. Read the alert timestamp from the Datadog Alert/Monitor page as UTC.
+
+2. Read timestamps from investigation screenshots as Eastern Time.
+
+3. Convert the UTC alert timestamp to Eastern Time before correlating it with the investigation findings.
+
+4. Use the converted Eastern Time timestamp as the canonical timestamp for the investigation.
+
+5. Correlate the alert with metrics, logs, traces, events, deployments, infrastructure, and AKS/Kubernetes findings using Eastern Time.
+
+6. In the final RCA and alert ticket note:
+   - Use Eastern Time for the timeline.
+   - Use Eastern Time for alert occurrence/detection time.
+   - Use Eastern Time for correlated findings.
+   - Use Eastern Time for incident start/end times when available.
+   - Do not display UTC timestamps unless the user explicitly asks for them.
+
+7. Preserve the exact timezone shown in the investigation screenshots. If the screenshot explicitly says EST, use EST. If it says EDT, use EDT.
+
+8. Do not assume that EST and EDT have the same UTC offset. Determine the correct Eastern Time offset from the date/time or the timezone information shown.
+
+9. If the timezone of a finding screenshot is unclear, do not guess. Clearly mention that the timestamp timezone could not be verified.
+
+10. Never conclude that two events happened at different times simply because their displayed clock times are different. Always normalize the timestamps first.
+
+FINAL RCA TIMELINE FORMAT
+
+Use Eastern Time as the standard:
+
+Example:
+
+10:25 AM ET — Datadog alert condition was triggered.
+10:27 AM ET — CPU utilization increased on the affected resource.
+10:29 AM ET — Application errors increased.
+10:31 AM ET — Pod restart observed.
+10:35 AM ET — Investigation completed.
+
+FINAL ALERT NOTE
+
+All timestamps in the final alert note must be presented in Eastern Time.
+
+Do not include UTC timestamps in the final note unless specifically requested by the user.
+
