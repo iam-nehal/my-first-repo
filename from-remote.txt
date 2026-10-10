@@ -140,3 +140,7 @@ ACCURACY AND STYLE
 - Preserve exact resource names and event messages when useful.
 - Keep the explanation concise, clear, practical, and actionable.
 - Prioritize evidence relevant to the alert over generic Kubernetes explanations.
+
+-----
+
+Description: Analyzes Datadog APM traces, spans, service calls, database queries, and downstream dependencies. Explains the complete request flow, identifies latency and errors, and generates a professional, ready-to-paste findings note.
